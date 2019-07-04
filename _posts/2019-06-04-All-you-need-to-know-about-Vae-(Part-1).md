@@ -12,13 +12,13 @@ VAEs also make a probability distribution of input data, and from that distribut
 
 In this blog we will learn:
 <ul>
-  <li><a href="#encoder" style="color: #000000">encoder</a></li>
-  <li><a href = "#latent vector">latent_vector(sample vector)</a></li>
-  <li><a href="#Decoder">decoder</a></li>
-  <li><a href="#Goal of Vae">Goal of VAE</a></li>
-  <li><a href = "#Loss Function in VAE">Loss Function in VAE</a></li>
-  <li><a href= "#Optimization">optimization</a></li>
-  <li><a href = "#Reparameterization">Reparameterization</a></li>
+  <li><a href="#encoder" style="color: #000000">Encoder</a></li>
+  <li><a href = "#latent vector" style="color: #000000">Latent_vector(sample vector)</a></li>
+  <li><a href="#Decoder" style="color: #000000">Decoder</a></li>
+  <li><a href="#Goal of Vae" style="color: #000000">Goal of VAE</a></li>
+  <li><a href = "#Loss Function in VAE" style="color: #000000">Loss Function in VAE</a></li>
+  <li><a href= "#Optimization" style="color: #000000">Optimization</a></li>
+  <li><a href = "#Reparameterization" style="color: #000000">Reparameterization</a></li>
 </ul>
 
 {% include image.html url="/assets/img/vae-gaussian.png" description="" %}
