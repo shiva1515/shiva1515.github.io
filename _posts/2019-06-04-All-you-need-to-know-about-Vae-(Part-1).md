@@ -16,10 +16,10 @@ In this blog we will learn:
   <li><a href="#encoder">encoder</a></li>
   <li><a href = "#latent vector">latent_vector(sample vector)</a></li>
   <li><a href="#Decoder">decoder</a></li>
-  <li><a href="Goal of Vae">Goal of VAE</a></li>
-  <li><a href = "Loss Function in VAE">Loss Function in VAE</a></li>
+  <li><a href="#Goal of Vae">Goal of VAE</a></li>
+  <li><a href = "#Loss Function in VAE">Loss Function in VAE</a></li>
   <li><a href= "#Optimization">optimization</a></li>
-  <li><a href = "Reparameterization">Reparameterization</a></li>
+  <li><a href = "#Reparameterization">Reparameterization</a></li>
 </ul>
 
 {% include image.html url="/assets/img/vae-gaussian.png" description="" %}
