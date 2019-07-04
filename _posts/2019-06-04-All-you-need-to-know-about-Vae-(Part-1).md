@@ -45,7 +45,7 @@ To compute $p(z\mid x)=\frac{p(x\mid z)\, p(z)}{p(x)}$ we have to compute the $p
 To remove this problem, we use an alternative solution, which is we approximate $p(z\mid x)$ with some known distribution $q(z\mid x)$ which is tractable. This is done by Variational Inference(VI)
 We use KL-divergence to approximate the $p(z\mid x)$ and $q(z\mid x)$.this divergence measures how much information is lost when using q to represent p. It is one measure q close to p. And we try to minimize the KL-divergence so to get similar distribution.
 
-$$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = -{\mathlarger{\sum}}  (q_\theta(z\mid x)log(\frac{q_\phi(z\mid z)}{p_\theta(z\mid x)}))$$
+$$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = -{\sum}  q_\theta(z\mid x)log(\frac{q_\phi(z\mid x)}{p_\theta(z\mid x)})$$
 
 Points to note about KL-divergence is:
 <ol>
