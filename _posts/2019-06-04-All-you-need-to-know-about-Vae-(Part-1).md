@@ -11,13 +11,13 @@ In this part of the blog, we will discuss the basics of the **Variational AutoEn
 Vae is a type of generative model which helps us to generate a similar type of input data. It helps to generate similar images, similar text etc.
 A generative model is a way of learning similar data distribution of input data so that it generates new similar type of data.
 VAEs also make a probability distribution of input data, and from that distribution, we create samples which is taking data from this distribution and generate new data similar to input data.<br/>
-<a href="#encoder">encoder</a>
-<a href = "#latent vector">latent_vector(sample vector)</a>
-<a href="#Decoder">decoder</a>
-<a href="Goal of Vae">Goal of VAE</a>
-<a href = "Loss Function in VAE">Loss Function in VAE</a>
-<a href="#Optimization">optimization</a>
-<a href = "Reparameterization">Reparameterization</a>
+<a href="#encoder">encoder</a><br/>
+<a href = "#latent vector">latent_vector(sample vector)</a><br/>
+<a href="#Decoder">decoder</a><br/>
+<a href="Goal of Vae">Goal of VAE</a><br/>
+<a href = "Loss Function in VAE">Loss Function in VAE</a><br/>
+<a href="#Optimization">optimization</a><br/>
+<a href = "Reparameterization">Reparameterization</a><br/>
 
 {% include image.html url="/assets/img/vae-gaussian.png" description="" %}
 
