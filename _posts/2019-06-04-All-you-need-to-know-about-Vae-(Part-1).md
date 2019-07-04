@@ -5,19 +5,22 @@ date: 2019-06-04
 mathjax: True
 ---
 
-{% include image.html url="/assets/img/vae_part_1.jpg" description="" %} 
 
-In this part of the blog, we will discuss the basics of the **Variational AutoEncoder**(VAE) and cover the theory part of VAE.And in the next section, we will implement VAE in a molecular generation(or say text generation).<br/>
+In this part of the blog, we will discuss the basics of the **Variational AutoEncoder**(VAE) and cover the theory part of VAE.<br/>
 Vae is a type of generative model which helps us to generate a similar type of input data. It helps to generate similar images, similar text etc.
 A generative model is a way of learning similar data distribution of input data so that it generates new similar type of data.
 VAEs also make a probability distribution of input data, and from that distribution, we create samples which is taking data from this distribution and generate new data similar to input data.<br/>
-<a href="#encoder">encoder</a><br/>
-<a href = "#latent vector">latent_vector(sample vector)</a><br/>
-<a href="#Decoder">decoder</a><br/>
-<a href="Goal of Vae">Goal of VAE</a><br/>
-<a href = "Loss Function in VAE">Loss Function in VAE</a><br/>
-<a href= "#Optimization">optimization</a><br/>
-<a href = "Reparameterization">Reparameterization</a><br/>
+
+In this blog we will learn:
+<ul>
+  <li><a href="#encoder">encoder</a></li>
+  <li><a href = "#latent vector">latent_vector(sample vector)</a></li>
+  <li><a href="#Decoder">decoder</a></li>
+  <li><a href="Goal of Vae">Goal of VAE</a></li>
+  <li><a href = "Loss Function in VAE">Loss Function in VAE</a></li>
+  <li><a href= "#Optimization">optimization</a></li>
+  <li><a href = "Reparameterization">Reparameterization</a></li>
+</ul>
 
 {% include image.html url="/assets/img/vae-gaussian.png" description="" %}
 
@@ -82,6 +85,8 @@ Instead of sampling from $z\sim q_\phi(z\mid x)$  we sample from N(0,1) i.e $\ep
 
 The reparametrization consists of saying that sampling from $z\sim N(\mu,\sigma)$ is equivalent to sampling $\epsilon∼N(0,1)$ and setting $z=\mu+\sigma⊙\epsilon$.
 After reparametrization we easily backpropogate.
+
+so thats the end of the theory section I hope you like it and in the next part we will implement the VAE for molecular generation or say the text generation.we use molecules as SMILES.
 
 References<br/>
 <a href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html" target="_blank">From Autoencoder to Beta-VAE</a> and <a href="http://kvfrans.com/variational-autoencoders-explained/" target="_blank">Variational Autoencoders Explained</a> nice explanation in these blogs I used images from these blogs<br/>
