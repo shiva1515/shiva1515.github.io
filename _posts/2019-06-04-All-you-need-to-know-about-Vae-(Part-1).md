@@ -48,6 +48,11 @@ We have to minimise two things one is kl-divergence so that one distribution sim
 
 $$L(\phi,\theta:x) = E_{z\sim q_\phi(z\mid x)}(log(p_\theta(x\mid z)) - D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))$$
 
+As we see, we have two loss function one for reconstruction loss, and other is divergence loss. This loss function is known as variational lower bound or evidences lower bound.
+This lower bound comes from the fact that KL-divergence is always non-negative. Through minimising the loss, we are maximizing the lower bound of the probability of generating new samples.
+
+**Optimization**
+So we want to minimize the loss function $min_{\theta,\phi}L(\theta,\phi)$ here $\theta$, $\phi$ are learnable parameters also say weights and biases terms. This is done by differentiating one parameter at a time, by one learnable parameter and keep another parameter constant and find minimum value and then put this minimum value into the second differentiable parameter. By doing this, you minimize the loss after several iterations. So the main problem with minimizing the loss is to differentiate the $\phi$ term because $\phi$ appears in the distribution from which expectation is taken if you observe above loss you see z is taken from $q_\phi(z\mid x).
 
 
 
