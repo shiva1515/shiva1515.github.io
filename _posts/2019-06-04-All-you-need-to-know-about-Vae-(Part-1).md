@@ -5,9 +5,22 @@ date: 2019-06-04
 mathjax: True
 ---
 
-
-In this part of the blog, we will discuss the basics of the VAE. And in the next section, we will implement VAE in a molecular generation.
+{% include image.html url="/assets/img/vae_part_1.jpg" description="" %} 
+In this part of the blog, we will discuss the basics of the \textbf{Variational AutoEncoder}(VAE). And in the next section, we will implement VAE in a molecular generation.
 Vae is a type of generative model which helps us to generate a similar type of input data. It helps to generate similar images, similar text etc.
 A generative model is a way of learning similar data distribution of input data so that it generates new similar type of data.
 VAEs also make a probability distribution of input data, and from that distribution, we create samples which is taking data from this distribution and generate new data similar to input data.
-{% include image.html url="/assets/img/vae_part_1.jpg" description="" %} 
+{% include image.html url="/assets/img/vae-gaussian.jpg" description="" %}
+
+So as we see from the above diagram, Vae has mainly 3 components or says we divide the VAE into three parts for better understanding of vae.
+Encoder: Encoder is a neural network that takes input data, and it converts higher dimensional data into lower dimensional data which we call latent space. Lets say we have an image of 28*28(784) pixels what encoder does is it convert our 784 dimensional images into a small dimensions of lets say 8 so the encoder tries to pass information of whole 784 dimension images to 8 dimension vector it encodes in such a way that this 8 dimensional space represents our whole input data.
+In Vae we do not say encoder we say probabilistic encoder because in Vae the small dimensional latent space does not take a discrete range of values it takes a probability distribution. As above we say we have an 8-dimensional small vector then 8 nodes represent some character of input data. e.g. if our input data is human faces, then these nodes may represent smiles, eyes shape, etc. and create a probability distribution of these characters.
+
+We represent encoder as $q_\phi(z|x)$ \phi which means find the z(small dimension latent space) given x which is input data. In general case, we take $q_\phi(z|x)$ is Gaussian distribution you can take any distribution whose distribution you know.we will discuss it later.
+{% include image.html url="/assets/img/encoder-decoder.png" description="" %}
+
+
+
+
+
+
