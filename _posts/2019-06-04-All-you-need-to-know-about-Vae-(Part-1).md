@@ -33,7 +33,7 @@ Why we use Gaussian in VAE encoder
 You may notice in encoder section we use Gaussian distribution in the encoder, so first I clear some point why we take a known distribution in encoder region.
 Let x be the input and z be the set of latent variables with joint distribution $p(z,x)$  the problem is to compute the conditional distribution of z given x $p(z|x)$
 
-To compute p(z|x) = (p(x|z)*p(z))/p(x) \( p(z|x)=\frac{p(x|z)p(z)}{p(x)} \) we have to compute the p(x) =∫_z▒p(x,z)dz \( p(x)=\int_{z} p(x,z)dx \) but the integral is not available in closed form or is intractable(i.e require exponential time to compute) because of multiple  variable involved in latent vector z.
+To compute \( p(z|x)=\frac{$p(x|z)$p(z)}{p(x)} \) we have to compute the $p(x)=\int_{z} p(x,z) dx$ but the integral is not available in closed form or is intractable(i.e require exponential time to compute) because of multiple  variable involved in latent vector z.
 
 
 
