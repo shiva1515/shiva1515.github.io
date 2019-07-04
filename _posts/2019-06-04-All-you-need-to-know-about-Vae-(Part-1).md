@@ -32,7 +32,7 @@ We represent decoder as $p_\theta(x|z)$ which means to find x provided z.
 {% include image.html url="/assets/img/vae.jpg" description="" %}
 **Goal of Vae**
 The goal of VAE is to find gaussian distribution $q_\phi(z|x)$ and take a sample from z ~ $q_\phi(z|x)$ (sampling z from $q_\phi(z|x)$) and generate some similar output.
-<h1>Why we use Gaussian in VAE encoder<h1>
+Why we use Gaussian in VAE encoder
 You may notice in encoder section we use Gaussian distribution in the encoder, so first I clear some point why we take a known distribution in encoder region.
 Let x be the input and z be the set of latent variables with joint distribution $p(z,x)$  the problem is to compute the conditional distribution of z given x $p(z|x)$
 
@@ -43,7 +43,7 @@ We use KL-divergence to approximate the $p(z\mid x)$ and $q(z\mid x)$.this diver
 
 $$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = sum_  (q_\theta(z\mid x)log(\frac{q_\phi(z\mid z)}{p_\theta(z\mid x)}))$$
 
-<h1>Points to note about KL-divergence is:<h1>
+Points to note about KL-divergence is:
 <ol>
   <li>It is always greater than 0  </li>
   <li> $D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))\neq D_{kl}(p_\theta(z\mid x)||q_\phi(z\mid x))$ </li>  
