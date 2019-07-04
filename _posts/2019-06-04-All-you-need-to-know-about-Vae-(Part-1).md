@@ -41,7 +41,7 @@ $$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = sum_  (q_\theta(z\mid x)log(\frac
 
 Points to note about KL-divergence is:
 1)it is always greater than 0 
-2)$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))\neq D_{kl}(q_\phi(z\mid x)p_\theta(z\mid x)||q_\phi(z\mid x))$
+2)$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))\neq D_{kl}(p_\theta(z\mid x)||q_\phi(z\mid x))$
 
 **Loss Functions in VAE:**
 We have to minimise two things one is kl-divergence so that one distribution similar to another and other is a reconstruction of input back from latent vector as we see latent vector is very less dimension as compared to input data, so some details is lost in converting back data. To minimise this loss, we use reconstruction loss. This loss function tells us how effectively the decoder decoded from z to input data x.
@@ -54,7 +54,14 @@ This lower bound comes from the fact that KL-divergence is always non-negative. 
 **Optimization**
 So we want to minimize the loss function $min_{\theta,\phi}L(\theta,\phi)$ here $\theta$, $\phi$ are learnable parameters also say weights and biases terms. This is done by differentiating one parameter at a time, by one learnable parameter and keep another parameter constant and find minimum value and then put this minimum value into the second differentiable parameter. By doing this, you minimize the loss after several iterations. So the main problem with minimizing the loss is to differentiate the $\phi$ term because $\phi$ appears in the distribution from which expectation is taken if you observe above loss you see z is taken from $q_\phi(z\mid x).
 
+**Reparameterization**
+When we implement encoder and decoder in the neural network, we need to backpropagate through random samples. Backpropagation cannot flow through random node; to overcome this obstacle, we use reparameterization trick.
+Instead of sampling from $z\smi q_\phi(z\mid x)$  we sample from N(0,1) i.e $\epsilon \smi N(0,1)$ then linear transform using $z=\mu+\sigma⊙\epsilon$
 
+{% include image.html url="/assets/img/vae_part_1_1.png" description="" %} 
+
+The reparametrization consists of saying that sampling from $z\smi N(\mu,\sigma)$ is equivalent to sampling $\epsilon∼N(0,1)$ and setting $z=\mu+\sigma⊙\epsilon$.
+After reparametrization we easily backpropogate.
 
 
 
