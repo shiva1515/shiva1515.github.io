@@ -32,6 +32,7 @@ We represent decoder as $p_\theta(x|z)$ which means to find x provided z.
 {% include image.html url="/assets/img/vae.jpg" description="" %}
 **Goal of Vae**
 The goal of VAE is to find gaussian distribution $q_\phi(z|x)$ and take a sample from z ~ $q_\phi(z|x)$ (sampling z from $q_\phi(z|x)$) and generate some similar output.
+
 Why we use Gaussian in VAE encoder
 You may notice in encoder section we use Gaussian distribution in the encoder, so first I clear some point why we take a known distribution in encoder region.
 Let x be the input and z be the set of latent variables with joint distribution $p(z,x)$  the problem is to compute the conditional distribution of z given x $p(z|x)$
@@ -68,6 +69,9 @@ Instead of sampling from $z\sim q_\phi(z\mid x)$  we sample from N(0,1) i.e $\ep
 
 The reparametrization consists of saying that sampling from $z\sim N(\mu,\sigma)$ is equivalent to sampling $\epsilon∼N(0,1)$ and setting $z=\mu+\sigma⊙\epsilon$.
 After reparametrization we easily backpropogate.
+
+References
+https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html and http://kvfrans.com/variational-autoencoders-explained/ nice explanation in these blogs I used images from these blogs and https://www.youtube.com/watch?v=YHldNC1SZVk&t=354s this youtube channel by alhad Kumar explain VAE concepts so easily.
 
 
 
