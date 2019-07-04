@@ -20,20 +20,28 @@ In Vae we do not say encoder we say probabilistic encoder because in Vae the sma
 We represent encoder as $q_\phi(z|x)$ which means find the z(small dimension latent space) given x which is input data. In general case, we take $q_\phi(z|x)$ is Gaussian distribution you can take any distribution whose distribution you know.we will discuss it later.
 {% include image.html url="/assets/img/encoder-decoder.png" description="" %}
 
-\textbf{Latent Space:}it is a layer in the neural network which represent our whole input data. It is also called bottleneck because of in very small dimension it represents whole data.
+**Latent Space:** It is a layer in the neural network which represent our whole input data. It is also called bottleneck because of in very small dimension it represents whole data.
 
-\textbf{Decoder:} As you see in below diagram you understand what decoder role in VAE, it converts latent sample space back to our input data. It converts back our 8-dimensional latent space into the 784-dimensional image.
+**Decoder:** As you see in below diagram you understand what decoder role in VAE, it converts latent sample space back to our input data. It converts back our 8-dimensional latent space into the 784-dimensional image.
 We represent decoder as $p_\theta(x|z)$ which means to find x provided z.
 
 {% include image.html url="/assets/img/vae.jpg" description="" %}
-
-\textbf{Goal of Vae}
+**Goal of Vae**
 The goal of VAE is to find gaussian distribution $q_\phi(z|x)$ and take a sample from z ~ $q_\phi(z|x)$ (sampling z from $q_\phi(z|x)$) and generate some similar output.
 Why we use Gaussian in VAE encoder
 You may notice in encoder section we use Gaussian distribution in the encoder, so first I clear some point why we take a known distribution in encoder region.
 Let x be the input and z be the set of latent variables with joint distribution $p(z,x)$  the problem is to compute the conditional distribution of z given x $p(z|x)$
 
 To compute $p(z\mid x)=\frac{p(x\mid z)\, p(z)}{p(x)}$ we have to compute the $p(x)=\int_{z} p(x,z) dx$ but the integral is not available in closed form or is intractable(i.e require exponential time to compute) because of multiple  variable involved in latent vector z.
+
+To remove this problem, we use an alternative solution, which is we approximate $p(z|x)$ with some known distribution $q(z|x)$ which is tractable. This is done by Variational Inference(VI)
+We use KL-divergence to approximate the $p(z|x)$ and $q(z|x)$.this divergence measures how much information is lost when using q to represent p. It is one measure q close to p. And we try to minimize the KL-divergence so to get similar distribution.
+
+$$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = sum_ (q\theta(z\mid x)log\frac{q_\phi(z\mid z)}{p\theta(z\mid x)} $$
+
+
+
+
 
 
 
