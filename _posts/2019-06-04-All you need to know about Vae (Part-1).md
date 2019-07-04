@@ -1,7 +1,7 @@
 ---
-layout:post
-title:"All you need to know about Vae (Part-1)"
-date:2019-06-04
+layout: post
+title: "All you need to know about Vae (Part-1)"
+date: 2019-06-04
 mathjax: True
 ---
 
