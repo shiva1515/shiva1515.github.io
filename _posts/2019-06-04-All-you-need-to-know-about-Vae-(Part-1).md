@@ -11,7 +11,7 @@ In this part of the blog, we will discuss the basics of the **Variational AutoEn
 Vae is a type of generative model which helps us to generate a similar type of input data. It helps to generate similar images, similar text etc.
 A generative model is a way of learning similar data distribution of input data so that it generates new similar type of data.
 VAEs also make a probability distribution of input data, and from that distribution, we create samples which is taking data from this distribution and generate new data similar to input data.<br/>
-<a href="Optimization">jump link</a>
+<a href="#Optimization">jump link</a>
 
 {% include image.html url="/assets/img/vae-gaussian.png" description="" %}
 
@@ -65,9 +65,10 @@ $$L(\phi,\theta:x) = E_{z\sim q_\phi(z\mid x)}(log(p_\theta(x\mid z)) - D_{kl}(q
 As we see, we have two loss function one for reconstruction loss, and other is divergence loss. This loss function is known as variational lower bound or evidences lower bound.
 This lower bound comes from the fact that KL-divergence is always non-negative. Through minimising the loss, we are maximizing the lower bound of the probability of generating new samples.
 </div>
-<div id = "Optimization"></div>
+<a id = "Optimization">
 **Optimization**
 So we want to minimize the loss function $min_{\theta,\phi}L(\theta,\phi)$ here $\theta$, $\phi$ are learnable parameters also say weights and biases terms. This is done by differentiating one parameter at a time, by one learnable parameter and keep another parameter constant and find minimum value and then put this minimum value into the second differentiable parameter. By doing this, you minimize the loss after several iterations. So the main problem with minimizing the loss is to differentiate the $\phi$ term because $\phi$ appears in the distribution from which expectation is taken if you observe above loss you see z is taken from $q_\phi(z\mid x)$.
+</a>
 <div id = "Reparameterization"></div>
 **Reparameterization**
 When we implement encoder and decoder in the neural network, we need to backpropagate through random samples. Backpropagation cannot flow through random node; to overcome this obstacle, we use reparameterization trick.
