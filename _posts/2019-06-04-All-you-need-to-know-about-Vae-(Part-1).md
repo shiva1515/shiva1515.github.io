@@ -6,15 +6,19 @@ mathjax: True
 ---
 
 {% include image.html url="/assets/img/vae_part_1.jpg" description="" %} 
-In this part of the blog, we will discuss the basics of the \textbf{Variational AutoEncoder}(VAE). And in the next section, we will implement VAE in a molecular generation.
+In this part of the blog, we will discuss the basics of the **Variational AutoEncoder**(VAE). And in the next section, we will implement VAE in a molecular generation.
 Vae is a type of generative model which helps us to generate a similar type of input data. It helps to generate similar images, similar text etc.
 A generative model is a way of learning similar data distribution of input data so that it generates new similar type of data.
 VAEs also make a probability distribution of input data, and from that distribution, we create samples which is taking data from this distribution and generate new data similar to input data.
 
 {% include image.html url="/assets/img/vae-gaussian.png" description="" %}
 
+
+
 So as we see from the above diagram, Vae has mainly 3 components or says we divide the VAE into three parts for better understanding of vae.
-Encoder: Encoder is a neural network that takes input data, and it converts higher dimensional data into lower dimensional data which we call latent space. Lets say we have an image of 28*28(784) pixels what encoder does is it convert our 784 dimensional images into a small dimensions of lets say 8 so the encoder tries to pass information of whole 784 dimension images to 8 dimension vector it encodes in such a way that this 8 dimensional space represents our whole input data.
+**Encoder:** Encoder is a neural network that takes input data, and it converts higher dimensional data into lower dimensional data which we call latent space. Lets say we have an image of 28*28(784) pixels what encoder does is it convert our 784 dimensional images into a small dimensions of lets say 8 so the encoder tries to pass information of whole 784 dimension images to 8 dimension vector it encodes in such a way that this 8 dimensional space represents our whole input data.
+
+
 In Vae we do not say encoder we say probabilistic encoder because in Vae the small dimensional latent space does not take a discrete range of values it takes a probability distribution. As above we say we have an 8-dimensional small vector then 8 nodes represent some character of input data. e.g. if our input data is human faces, then these nodes may represent smiles, eyes shape, etc. and create a probability distribution of these characters.
 
 We represent encoder as $q_\phi(z|x)$ which means find the z(small dimension latent space) given x which is input data. In general case, we take $q_\phi(z|x)$ is Gaussian distribution you can take any distribution whose distribution you know.we will discuss it later.
@@ -28,7 +32,7 @@ We represent decoder as $p_\theta(x|z)$ which means to find x provided z.
 {% include image.html url="/assets/img/vae.jpg" description="" %}
 **Goal of Vae**
 The goal of VAE is to find gaussian distribution $q_\phi(z|x)$ and take a sample from z ~ $q_\phi(z|x)$ (sampling z from $q_\phi(z|x)$) and generate some similar output.
-Why we use Gaussian in VAE encoder
+<h1>Why we use Gaussian in VAE encoder<h1>
 You may notice in encoder section we use Gaussian distribution in the encoder, so first I clear some point why we take a known distribution in encoder region.
 Let x be the input and z be the set of latent variables with joint distribution $p(z,x)$  the problem is to compute the conditional distribution of z given x $p(z|x)$
 
@@ -39,9 +43,11 @@ We use KL-divergence to approximate the $p(z\mid x)$ and $q(z\mid x)$.this diver
 
 $$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = sum_  (q_\theta(z\mid x)log(\frac{q_\phi(z\mid z)}{p_\theta(z\mid x)}))$$
 
-Points to note about KL-divergence is:
-1)it is always greater than 0 
-2)$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))\neq D_{kl}(p_\theta(z\mid x)||q_\phi(z\mid x))$
+<h1>Points to note about KL-divergence is:<h1>
+<ol>
+  <li>It is always greater than 0  </li>
+  <li> $D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))\neq D_{kl}(p_\theta(z\mid x)||q_\phi(z\mid x))$ </li>  
+</ol>
 
 **Loss Functions in VAE:**
 We have to minimise two things one is kl-divergence so that one distribution similar to another and other is a reconstruction of input back from latent vector as we see latent vector is very less dimension as compared to input data, so some details is lost in converting back data. To minimise this loss, we use reconstruction loss. This loss function tells us how effectively the decoder decoded from z to input data x.
