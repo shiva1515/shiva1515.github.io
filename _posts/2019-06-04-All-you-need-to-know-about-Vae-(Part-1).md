@@ -46,7 +46,7 @@ Points to note about KL-divergence is:
 **Loss Functions in VAE:**
 We have to minimise two things one is kl-divergence so that one distribution similar to another and other is a reconstruction of input back from latent vector as we see latent vector is very less dimension as compared to input data, so some details is lost in converting back data. To minimise this loss, we use reconstruction loss. This loss function tells us how effectively the decoder decoded from z to input data x.
 
-$$L(\phi,\theta:x) = E_{z\sim q_\phi(z\mid x)}(log(p_\theta(x\mid z)) - D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))
+$$L(\phi,\theta:x) = E_{z\sim q_\phi(z\mid x)}(log(p_\theta(x\mid z)) - D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))$$
 
 
 
