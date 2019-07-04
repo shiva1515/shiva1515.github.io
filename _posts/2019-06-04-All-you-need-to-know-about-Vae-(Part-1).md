@@ -37,11 +37,11 @@ To compute $p(z\mid x)=\frac{p(x\mid z)\, p(z)}{p(x)}$ we have to compute the $p
 To remove this problem, we use an alternative solution, which is we approximate $p(z\mid x)$ with some known distribution $q(z\mid x)$ which is tractable. This is done by Variational Inference(VI)
 We use KL-divergence to approximate the $p(z\mid x)$ and $q(z\mid x)$.this divergence measures how much information is lost when using q to represent p. It is one measure q close to p. And we try to minimize the KL-divergence so to get similar distribution.
 
-$$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = sum_  (q_\theta(z\mid x)log\frac{q_\phi(z\mid z)}{p_\theta(z\mid x)}) $$
+$$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x)) = sum_  (q_\theta(z\mid x)log(\frac{q_\phi(z\mid z)}{p_\theta(z\mid x)}))$$
 
 Points to note about KL-divergence is:
 1)it is always greater than 0 
-2)$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))\neq D_{kl}(q_\phi(z\mid x)p_\theta(z\mid x)||q_\phi(z\mid x))
+2)$D_{kl}(q_\phi(z\mid x)||p_\theta(z\mid x))\neq D_{kl}(q_\phi(z\mid x)p_\theta(z\mid x)||q_\phi(z\mid x))$
 
 **Loss Functions in VAE:**
 We have to minimise two things one is kl-divergence so that one distribution similar to another and other is a reconstruction of input back from latent vector as we see latent vector is very less dimension as compared to input data, so some details is lost in converting back data. To minimise this loss, we use reconstruction loss. This loss function tells us how effectively the decoder decoded from z to input data x.
