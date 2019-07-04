@@ -71,8 +71,7 @@ The reparametrization consists of saying that sampling from $z\sim N(\mu,\sigma)
 After reparametrization we easily backpropogate.
 
 References
-https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html and http://kvfrans.com/variational-autoencoders-explained/ nice explanation in these blogs I used images from these blogs and https://www.youtube.com/watch?v=YHldNC1SZVk&t=354s this youtube channel by alhad Kumar explain VAE concepts so easily.
-
+<a href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html" target="_blank">From Autoencoder to Beta-VAE</a> and <a href="http://kvfrans.com/variational-autoencoders-explained/" target="_blank">Variational Autoencoders Explained</a> nice explanation in these blogs I used images from these blogs and <a href="https://www.youtube.com/watch?v=YHldNC1SZVk&t=354s" target="_blank">Alhad Kumar</a> this youtube channel by alhad Kumar explain VAE concepts so easily.
 
 
 
