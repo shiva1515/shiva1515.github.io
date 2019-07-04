@@ -56,11 +56,11 @@ So we want to minimize the loss function $min_{\theta,\phi}L(\theta,\phi)$ here 
 
 **Reparameterization**
 When we implement encoder and decoder in the neural network, we need to backpropagate through random samples. Backpropagation cannot flow through random node; to overcome this obstacle, we use reparameterization trick.
-Instead of sampling from $z\smi q_\phi(z\mid x)$  we sample from N(0,1) i.e $\epsilon \smi N(0,1)$ then linear transform using $z=\mu+\sigma⊙\epsilon$
+Instead of sampling from $z\sim q_\phi(z\mid x)$  we sample from N(0,1) i.e $\epsilon \sim N(0,1)$ then linear transform using $z=\mu+\sigma⊙\epsilon$
 
 {% include image.html url="/assets/img/vae_part_1_1.png" description="" %} 
 
-The reparametrization consists of saying that sampling from $z\smi N(\mu,\sigma)$ is equivalent to sampling $\epsilon∼N(0,1)$ and setting $z=\mu+\sigma⊙\epsilon$.
+The reparametrization consists of saying that sampling from $z\sim N(\mu,\sigma)$ is equivalent to sampling $\epsilon∼N(0,1)$ and setting $z=\mu+\sigma⊙\epsilon$.
 After reparametrization we easily backpropogate.
 
 
