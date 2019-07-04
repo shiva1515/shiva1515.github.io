@@ -4,8 +4,9 @@ title: "All you need to know about Vae (Part-1)"
 date: 2019-06-04
 mathjax: True
 ---
-
-{% include image.html url="/assets/img/vae_part_1.jpg" description="" %} 
+<p align="center">
+  {% include image.html url="/assets/img/vae_part_1.jpg" description="" %} 
+</p>
 In this part of the blog, we will discuss the basics of the **Variational AutoEncoder**(VAE) and cover the theory part of VAE.And in the next section, we will implement VAE in a molecular generation(or say text generation).<br/>
 Vae is a type of generative model which helps us to generate a similar type of input data. It helps to generate similar images, similar text etc.
 A generative model is a way of learning similar data distribution of input data so that it generates new similar type of data.
@@ -16,6 +17,8 @@ VAEs also make a probability distribution of input data, and from that distribut
 
 
 So as we see from the above diagram, Vae has mainly 3 components or says we divide the VAE into three parts for better understanding of vae.<br/>
+<br/>
+
 **Encoder:** Encoder is a neural network that takes input data, and it converts higher dimensional data into lower dimensional data which we call latent space. Lets say we have an image of 28*28(784) pixels what encoder does is it convert our 784 dimensional images into a small dimensions of lets say 8 so the encoder tries to pass information of whole 784 dimension images to 8 dimension vector it encodes in such a way that this 8 dimensional space represents our whole input data.<br/>
 
 
