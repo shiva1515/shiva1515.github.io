@@ -5,7 +5,6 @@ date: 2019-06-04
 mathjax: True
 ---
 
-
 In this part of the blog, we will discuss the basics of the **Variational AutoEncoder**(VAE) and cover the theory part of VAE.<br/>
 Vae is a type of generative model which helps us to generate a similar type of input data. It helps to generate similar images, similar text etc.
 A generative model is a way of learning similar data distribution of input data so that it generates new similar type of data.
@@ -13,7 +12,7 @@ VAEs also make a probability distribution of input data, and from that distribut
 
 In this blog we will learn:
 <ul>
-  <li><a href="#encoder">encoder</a></li>
+  <li><a href="#encoder" style="color: #000000">encoder</a></li>
   <li><a href = "#latent vector">latent_vector(sample vector)</a></li>
   <li><a href="#Decoder">decoder</a></li>
   <li><a href="#Goal of Vae">Goal of VAE</a></li>
