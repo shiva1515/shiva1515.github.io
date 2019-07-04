@@ -85,7 +85,7 @@ Instead of sampling from $z\sim q_\phi(z\mid x)$  we sample from N(0,1) i.e $\ep
 The reparametrization consists of saying that sampling from $z\sim N(\mu,\sigma)$ is equivalent to sampling $\epsilon∼N(0,1)$ and setting $z=\mu+\sigma⊙\epsilon$.
 After reparametrization we easily backpropogate.
 
-so thats the end of the theory section I hope you like it and in the next part we will implement the VAE for molecular generation or say the text generation.we use molecules as SMILES.
+so thats the end of the theory section I hope you like it and in the next part we will implement the VAE for molecular generation or the text generation.we use molecules as SMILES.
 
 References<br/>
 <a href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html" target="_blank">From Autoencoder to Beta-VAE</a> and <a href="http://kvfrans.com/variational-autoencoders-explained/" target="_blank">Variational Autoencoders Explained</a> nice explanation in these blogs I used images from these blogs<br/>
