@@ -455,6 +455,7 @@ class Logger(UserList):
 for taking a sample from the model we use the encoder and take mean and sigma from the encoder after taking mean and sigma we convert this into the decoder dimension, and we get sample smiles.<br/>
 We first feed <”bos”> to the decoder then this decoder tries to give one character at a time we run this in a for loop from 1 to maximum length from this we obtain a list of tensor each tensor represent the character of smile and then by  using tensortostring function we convert obtained tensor to smiles string.<br/>
 We give the maximum length up to which we generate smiles if it generates less then maximum we pad it, and after converting back to string from tensor, we remove this padding.<br/>
+
 ```python
 from tqdm import tqdm
 import pandas as pd
@@ -493,7 +494,7 @@ print(sample)
 
 References<br/>
 
-I use <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">github</a>this GitHub code in this blog to explain VAE.you can see more models in molecular generation in pytorch into this GitHub page.
+I use <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">github</a>  this GitHub code in this blog to explain VAE.you can see more models in molecular generation in pytorch into this GitHub page.
 
 
 
