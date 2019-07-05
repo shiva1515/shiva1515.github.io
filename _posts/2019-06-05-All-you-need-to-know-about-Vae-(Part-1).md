@@ -491,6 +491,7 @@ sample = sample.take_samples(model,n_batch)
 print(sample)
 ```
 
+hope you like it.if you want to know more about molecular generation please visit <a href="https://github.com/bayeslabs" target="_blank">bayes lab</a> github page here you will find more models on molecular generation.<br/>
 
 References<br/>
 
