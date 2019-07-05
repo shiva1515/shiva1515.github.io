@@ -41,7 +41,7 @@ train_data_smiles2 = (train_data1["SMILES"].squeeze()).astype(str).tolist()
 train_data = train_data_smiles2
 ```
 
-**Building a vocabulary**
+**Building a vocabulary**<br/>
 After that, we build a vocabulary for the model, to make vocabulary we use set() because when we feed data into the set, it removes the repeat data. After that, we make a list of characters to make vocabulary for our model than we add <’bos’> to indicate the beginning of smiles,<’eos’> to indicate the end of a sentence,<”pad”> to make all smiles of the same length and <”unk”> for unknown words.<br/>
 <br/>
 After completion of vocabulary we make character to index and index to character, to encode decode the vocabulary.
@@ -490,7 +490,6 @@ model.eval()
 sample = sample.take_samples(model,n_batch)
 print(sample)
 ```
-
 
 
 References<br/>
