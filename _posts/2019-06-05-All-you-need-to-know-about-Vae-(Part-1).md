@@ -10,9 +10,10 @@ Molecular generation is the generating of new molecules. In this model, we gener
 
 
 {% include image.html url="/assets/img/main_image.jpg" description="" %}
-
+<br/>
+<br/>
 **SMILES** (Simplified Molecular Input Line Entry System) are the type of chemical notation that helps us to represent molecules and easy to used by the computers. It is a simple string representation of molecules. Some examples
-c1ccccc1 benzene
+c1ccccc1 benzene,
 c1c(N(=O)=O)cccc1 Nitrobenzene
 
 {% include image.html url="/assets/img/vae-2.png" description="" %}
@@ -21,8 +22,8 @@ Here we see molecular generation in pytorch.For the implementation of VAE in the
 We will be using RNN in this model because RNN tries to capture the pattern of text easily as compared to CNN and also in RNN, we have LSTM and GRU for memorizing.<br/>
 We use the GRU (Gated Recurrent Unit) model because it aims to solve the vanishing gradient problem, which comes with a standard recurrent neural network.<br/>
 
-*Let's get hands dirty on the code.*
-**Import dataset**
+*Let's get hands dirty on the code.*<br/>
+**Import dataset**<br/>
 First, we will import our dataset, which contains smiles and convert into the strings.
 
 ``` python
@@ -30,7 +31,7 @@ import pandas as pd
 import torch
 
 
-data = pd.read_csv('C:/Users/ASUS\Desktop/intern things/dataset_iso_v1.csv')
+data = pd.read_csv('C:/Users/ASUS/Desktop/intern things/dataset_iso_v1.csv')
 train_data1 = data[data['SPLIT'] == 'train']
 train_data_smiles2 = (train_data1["SMILES"].squeeze()).astype(str).tolist()
 train_data = train_data_smiles2
