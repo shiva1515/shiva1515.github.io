@@ -493,7 +493,7 @@ print(sample)
 
 References<br/>
 
-I use https://github.com/molecularsets/moses/tree/master/moses/vae   <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">github</a>this GitHub code in this blog to explain VAE.you can see more models in molecular generation in pytorch into this GitHub page.
+I use <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">github</a>this GitHub code in this blog to explain VAE.you can see more models in molecular generation in pytorch into this GitHub page.
 
 
 
