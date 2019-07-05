@@ -491,11 +491,11 @@ sample = sample.take_samples(model,n_batch)
 print(sample)
 ```
 
-hope you like it.if you want to know more about molecular generation please visit <a href="https://github.com/bayeslabs" target="_blank">bayes lab</a> github page here you will find more models on molecular generation.<br/>
+hope you like it. if you want to know more about molecular generation please visit <a href="https://github.com/bayeslabs" target="_blank">bayes lab</a> github page here you will find more models on molecular generation.<br/>
 
 References<br/>
 
-I use <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">github</a>  this GitHub code in this blog to explain VAE.you can see more models in molecular generation in pytorch into this GitHub page.
+I use <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">github</a>  this GitHub code in this blog to explain VAE. you can see more models in molecular generation in pytorch into this GitHub page.
 
 
 
