@@ -24,6 +24,7 @@ We will be using RNN in this model because RNN tries to capture the pattern of t
 We use the GRU (Gated Recurrent Unit) model because it aims to solve the vanishing gradient problem, which comes with a standard recurrent neural network.<br/>
 
 *Let's get hands dirty on the code.*<br/>
+<a id="Import_dataset"></a>
 **Import dataset**<br/>
 the dataset we used for this purpose is refined from Zinc Database <a href="https://media.githubusercontent.com/media/molecularsets/moses/master/data/dataset_v1.csv" target="_blank">dataset</a><br/>
 This is huge dataset so first slice the dataset according to your system.this dataset contain 1,936k smiles.
@@ -40,7 +41,7 @@ train_data1 = data[data['SPLIT'] == 'train']
 train_data_smiles2 = (train_data1["SMILES"].squeeze()).astype(str).tolist()
 train_data = train_data_smiles2
 ```
-
+<a id="Build vocabulary"></a>
 **Building a vocabulary**<br/>
 After that, we build a vocabulary for the model, to make vocabulary we use set() because when we feed data into the set, it removes the repeat data. After that, we make a list of characters to make vocabulary for our model than we add <’bos’> to indicate the beginning of smiles,<’eos’> to indicate the end of a sentence,<”pad”> to make all smiles of the same length and <”unk”> for unknown words.<br/>
 <br/>
@@ -97,7 +98,7 @@ def string2tensor(string, device='model'):
 tensor = [string2tensor(string, device=device) for string in train_data]
 vector = torch.eye(len(c2i))
 ```
-
+<a id="Model"></a>
 **Model**<br/>
 In the previous post about VAE part, I explain the role of the encoder, decoder and latent vector.As we now create vae model, if you have doubts in the theory part of VAE, you can see my previous post.<br/>
 
