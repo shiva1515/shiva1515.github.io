@@ -13,6 +13,7 @@ Molecular generation is the generating of new molecules. In this model, we gener
 {% include image.html url="/assets/img/main_image.jpg" description="" %}
 <br/>
 <br/>
+<a id="SMILES"></a>
 **SMILES** (Simplified Molecular Input Line Entry System) are the type of chemical notation that helps us to represent molecules and easy to used by the computers. It is a simple string representation of molecules. Some examples
 c1ccccc1 benzene,
 c1c(N(=O)=O)cccc1 Nitrobenzene
