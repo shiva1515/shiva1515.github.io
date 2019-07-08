@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "lets see"
+title: "Adversarial Autoencoder and drawbacks of Variational Autoencoder"
 date: 2019-06-08
 mathjax: True
 ---
@@ -84,7 +84,7 @@ Let's see the code of AAE in pytorch.in this code, we see text generation by usi
 I used pycharm; I suggest you use google collab for this code and please reduce the size of the data as real data needs a huge computation.
 
 **Import dataset and data-preprocessing:**<br/>
-We use the same <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Import_dataset" target="_blank">dataset</a> as we use in VAE to see the <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Build vocabulary" target="_blank">dvocabulary</a><br/>
+We use the same <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Import_dataset" target="_blank">dataset</a> as we use in VAE to see the <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Build vocabulary" target="_blank">vocabulary</a><br/>
 The data preprocessing part is same in VAE and AAE. and i explain about data preprocessing also.
 
 **Model:**<br/>
