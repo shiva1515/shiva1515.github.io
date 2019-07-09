@@ -5,7 +5,7 @@ date: 2019-06-08
 mathjax: True
 ---
 
-In my previous two blogs, you see how vae helps to create <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#SMILES" target="_blank">SMILES</a>(text generation) of a similar kind.<br/>
+In my previous two blogs, you see how vae helps to create <a href="/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#SMILES" target="_blank">SMILES</a>(text generation) of a similar kind.<br/>
 
 before coming into the Adversarial Autoencoder lets see some drawbacks of Variational autoencoder(VAE)
 
