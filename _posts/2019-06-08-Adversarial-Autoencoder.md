@@ -7,12 +7,13 @@ mathjax: True
 
 In my previous two blogs, you see how vae helps to create <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#SMILES" target="_blank">SMILES</a>(text generation) of a similar kind.<br/>
 
-there are many models which work similarly to the VAE.they also helps us to understand the similar input generation. But what's the difference between VAE and others it they both work on the same things.
-Why we use other models instead of VAE for similar input generation. Is there any drawbacks of VAE over other models. <br/>
+before coming into the Adversarial Autoencoder lets see why some drawbacks of Variational autoencoder(VAE)
 
-Today we will see about drawbacks of VAE and how Generative adversarial network and Adversarial autoencoder is better than Variational autoencoder.
-The assumption we took in VAE is that we used another distribution which is Gaussian distribution and imposed this distribution to our latent vector distribution because we don’t know the distribution of input data
-and to do this we use KL-divergence to make the similar distribution.<br/>
+there are many models which work similarly to the VAE.they also helps us to understand the similar input generation. But what's the difference between VAE and others it they both work on the same things.
+Why we use other models instead of VAE for similar input generation.<br/>
+
+Today we will see about drawbacks of VAE and how Generative adversarial network and Adversarial autoencoder is better than Variational autoencoder.<br/>
+The assumption we took in VAE is that we used another distribution which is Gaussian distribution and imposed this distribution to our latent vector distribution because we don’t know the distribution of input data and to do this we use KL-divergence to make the similar distribution.<br/>
 
 To know more about VAE and KL-divergence please refer to my previous <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html" target="_blank">blogs</a><br/>
 we take assumption when using KL-divergence that the two distribution will overlap each other.but what if they don’t overlap each other.
