@@ -5,7 +5,7 @@ date: 2019-06-05
 mathjax: True
 ---
 In this part, we will see how using **Variational AutoEncoder** we generate a similar type of text; We use VAE in a molecular generation.
-If you don’t know about VAE, please visit the part-1 of <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html" target="_blank">VAE</a> you will understand the theory part better.<br/>
+If you don’t know about VAE, please visit the part-1 of <a href="/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html" target="_blank">VAE</a> you will understand the theory part better.<br/>
 Molecular generation is the generating of new molecules. In this model, we generate a similar molecule as input molecules.input of this model is smiles, and the output is a similar type of smiles as of input. We use pytorch to implement VAE in a molecular generation.<br/>
 <br/>
 
@@ -502,4 +502,4 @@ Thank you
 
 References<br/>
 
-I use <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">github</a>  this GitHub code in this blog to explain VAE. you can see more models in molecular generation in pytorch into this GitHub page.
+I use this <a href="https://github.com/molecularsets/moses/tree/master/moses/vae" target="_blank">GitHub</a> code in this blog to explain VAE. you can see more models in molecular generation in pytorch into this GitHub page.
