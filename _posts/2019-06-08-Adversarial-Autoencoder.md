@@ -123,7 +123,7 @@ class encoder(nn.Module):
         return state
 
 ......
-to see full code please visit the above given link
+to see decoder and discriminator code please visit the above given link
         
 ```
 **Training:**<br/>
@@ -159,7 +159,7 @@ def pretrain(model, train_loader):
                 optimizer.step()
 
 ..
-to see full code visit click on above link
+to see the full training code visit click on above link
 
 ```
 **Sampling:**<br/>
