@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Adversarial Autoencoder and drawbacks of Variational Autoencoder"
+title: "Adversarial Autoencoder"
 date: 2019-06-08
 mathjax: True
 ---
