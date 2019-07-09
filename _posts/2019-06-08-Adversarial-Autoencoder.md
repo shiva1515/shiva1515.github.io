@@ -84,6 +84,7 @@ Here encoder plays two crucial roles
 Let's see the code of AAE in pytorch.in this code, we see text generation by using SMILES(molecular generation)
 
 I used pycharm; I suggest you to use google collab for this code and please reduce the size of the data as real data needs a huge computation.
+to see the full code please visit this <a href="https://github.com/bayeslabs/genmol/tree/shubham/genmol/aae" target="_blank">Github</a> page.
 
 **Import dataset and data-preprocessing:**<br/>
 We use the same <a href="/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Import_dataset" target="_blank">dataset</a> as we use in VAE and also same <a href="/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Build vocabulary" target="_blank">vocabulary</a><br/>
@@ -95,26 +96,6 @@ We feed our vocabulary first to encoder this encoder tries to encode the input d
 here we use RNN with Adversarial Autoencoder as for similar text generation
 
 ```python
-import torch
-
-import pandas as pd
-from torch.nn.utils.rnn import pad_sequence
-import torch.nn as nn
-
-
-from torch.nn.utils.rnn import pad_packed_sequence, pack_padded_sequence
-
-
-from data import *
-
-
-emb_dim = 30
-hidden_dim = 64
-latent_dim = 4
-disc_input = 64
-disc_output = 84
-batch_size = 50
-
 
 class encoder(nn.Module):
     def __init__(self, vocab, emb_dim, hidden_dim, latent_dim):
@@ -123,7 +104,6 @@ class encoder(nn.Module):
         self.latent_dim = latent_dim
         self.emb_dim = emb_dim
         self.vocab = vocab
-
         self.embeddings_layer = nn.Embedding(len(vocab), emb_dim, padding_idx=c2i['<pad>'])
 
         self.rnn = nn.LSTM(emb_dim, hidden_dim)
@@ -133,7 +113,6 @@ class encoder(nn.Module):
 
     def forward(self, x, lengths):
         batch_size = x.shape[0]
-
         x = self.embeddings_layer(x)
         x = pack_padded_sequence(x, lengths, batch_first=True)
         output, (_, x) = self.rnn(x)
@@ -142,7 +121,6 @@ class encoder(nn.Module):
         x = self.fc(x)
         state = self.relu(x)
         return state
-
 
 class decoder(nn.Module):
     def __init__(self, vocab, emb_dim, latent_dim, hidden_dim):
@@ -160,21 +138,14 @@ class decoder(nn.Module):
     def forward(self, x, lengths, state, is_latent_state=False):
         if is_latent_state:
             c0 = self.latent(state)
-
             c0 = c0.unsqueeze(0)
             h0 = torch.zeros_like(c0)
-
             state = (h0, c0)
-
         x = self.embeddings_layer(x)
-
         x = pack_padded_sequence(x, lengths, batch_first=True)
-
         x, state = self.rnn(x, state)
-
         x, lengths = pad_packed_sequence(x, batch_first=True)
         x = self.fc(x)
-
         return x, lengths, state
 
 
@@ -194,9 +165,9 @@ class Discriminator(nn.Module):
         x = self.lin1(x)
         x = self.lin2(x)
         x = self.lin3(x)
-
         x = self.sig(x)
         return x
+        
 class AAE(nn.Module):
     def __init__(self):
         super(AAE,self).__init__()
@@ -210,11 +181,6 @@ To train the model first, we have to divide the model into two parts first is au
 After pretraining, we train our generative part so now we use encoder and discriminator in this training when data comes from the real dataset, i.e. from encoder we make them label 0 and when data comes from real distribution we make them label 1. And feed into the discriminator, it tries to discriminate, but we train them until our discriminator does not differentiate between encoder input and real distribution input.<br/>
 
 ```python
-from torch.utils.data import DataLoader
-
-import torch.nn.functional as F
-from model import *
-
 def pretrain(model, train_loader):
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(list(model.encoder.parameters()) + list(model.decoder.parameters()), lr=0.001)
@@ -299,42 +265,13 @@ def fit(model,train_data):
     pretrain(model,train_loader)
     train(model,train_loader)
 
-def get_collate_device(model):
-    return device
-def get_dataloader(model, data, collate_fn=None, shuffle=True):
-    if collate_fn is None:
-        collate_fn = get_collate_fn(model)
-    return DataLoader(data, batch_size= batch_size,shuffle=shuffle,collate_fn=collate_fn)
 
-
-def get_collate_fn(model):
-    device = get_collate_device(model)
-
-    def collate(data):
-        data.sort(key=lambda x: len(x), reverse=True)
-
-        tensors = [string2tensor(string, device=device) for string in data]
-        lengths = torch.tensor([len(t) for t in tensors], dtype=torch.long, device=device)
-
-        encoder_inputs = pad_sequence(tensors, batch_first=True, padding_value=c2i["<pad>"])
-        encoder_input_lengths = lengths - 2
-
-        decoder_inputs = pad_sequence([t[:-1] for t in tensors], batch_first=True, padding_value=c2i["<pad>"])
-        decoder_input_lengths = lengths - 1
-        decoder_targets = pad_sequence([t[1:] for t in tensors], batch_first=True, padding_value=c2i["<pad>"])
-        decoder_target_lengths = lengths - 1
-        return (encoder_inputs, encoder_input_lengths), (decoder_inputs, decoder_input_lengths), (decoder_targets, decoder_target_lengths)
-
-    return collate
 ```
 **Sampling:**<br/>
 After training is done, our model completes, now our real distribution well imposed on our latent distribution.<br/>
 Now we take samples from our latent distribution and feed into the decoder generate the similar data as of input data.<br/>
 
 ```python
-from model import *
-from tqdm import tqdm
-from data import *
 def sample(model,n_batch, max_len=100):
     with torch.no_grad():
         samples = []
