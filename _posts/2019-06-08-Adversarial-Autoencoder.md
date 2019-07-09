@@ -9,7 +9,7 @@ In my previous two blogs, you see how vae helps to create <a href="https://shiva
 
 before coming into the Adversarial Autoencoder lets see some drawbacks of Variational autoencoder(VAE)
 
-there are many models which work similarly to the VAE.they also helps us to understand the similar input generation. But what's the difference between VAE and others it they both work on the same things.
+there are many models which work similarly to the VAE. they also helps us to understand the similar input generation. But what's the difference between VAE and others it they both work on the same things.
 Why we use other models instead of VAE for similar input generation.<br/>
 
 Today we will see about drawbacks of VAE and how Generative adversarial network and Adversarial autoencoder is better than Variational autoencoder.<br/>
@@ -21,34 +21,35 @@ if this not happen then our KL-divergence gives the $\infty$ value which gives u
 lets say $Q(x)$ and $P(x)$ be the probability distribution function and we want to measure the KL-divergence of these distributions.<br/>
 
 And we have values of 
-$$Q(x=0) =0$$ and $$P(x=1) = 1$$ then<br/>
+$$Q(x=0) =0$$ and $$P(x = 0) = 1$$ then<br/>
 $$KL(P||Q)_{x=0}  = P(x=0)log\frac{P(x=0)}{Q(x=0)}$$<br/>
 $$KL(P||Q)_{x=0} = \infty$$
 
 To overcome this drawback, we use Jensen-Shannon Divergence(JSD) divergence and Wasserstein divergence.
 
 JSD divergence: It is a method to measure the similarity between two probability distribution function. 
-It is the same as the KL-divergence method but with better results.<br/>
+It is same as the KL-divergence method but with better results.<br/>
 JSD-divergence = $JSD(P||Q) = \frac{1}{2}[KL(P||M) + KL(Q||M)]$<br/>
 Where $M = (P + Q)/2$<br/>
 
 advantange of JSD over KL-divergence is its symmetric nature means $JSD(P||Q) = JSD(Q||P)$<br/>
 now lets again see the above example we measure the JSD divergence between two probability function $P(x)$ and $Q(x)$ <br/>
-$$JSD(P(x=0)||Q(x=0)) = ½(P(x=0)log\frac{P(x=0)}{\frac{P(x=0) + Q(x=0)}{2}} + Q(x=0)log\frac{Q(x=0)}{\frac{Q(x=0) + P(x=0)}{2}})$$ <br/>
+$$JSD(P(x=0)||Q(x=0)) = \frac{1}{2}(P(x=0)log\frac{P(x=0)}{\frac{P(x=0) + Q(x=0)}{2}} + Q(x=0)log\frac{Q(x=0)}{\frac{Q(x=0) + P(x=0)}{2}})$$ <br/>
 $$JSD(P(x=0)||Q(x=0)) = log2$$<br/>
 
 And the advantage of GAN over VAE is it uses JSD divergence instead of KL-divergence.<br/>
-Now there is one problem in JSD divergence, and  this is when the two distribution function far from each other then it gives constant value log2 and when we take the gradient of JSD divergence after some time it provides 0 value.<br/>
+Now there is one problem in JSD divergence, and this is when the two distribution function far from each other then it gives constant value log2 and when we take the gradient of JSD divergence after some point it provides 0 value.<br/>
 
 this is not better for the model. So now we want another method which helps us to measure gradient as well as at the same time it also helps to measure the similarity between two probability distribution function.<br/>
 
 To overcome this, we use Wasserstein distance, which is also called earth mover distance.
-I am not going deep in this concept because then blog will we too large. In reference, I will provide you with a link if we want to know the concepts of Wasserstein distance.
+I am not going deep in this concept because then blog will we too large. In reference, I will provide you with a link if we want to know the concepts of Wasserstein distance
+<a href="https://www.youtube.com/watchv=_z9bdayg8ZI&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=34" target="_blank">Wasserstein distance</a>. 
 When we use Wasserstein distance in GAN, we called GAN as WGAN.<br/>
 
-*How AAE is used*<br/>
+**Adversarial Autoencoder**<br/>
 An adversarial autoencoder is a type Generative adversarial network in which we have an autoencoder and a discriminator.<br/>
-In Autoencoder part we have <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html#encoder" target="_blank">Encoder</a>, <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html#Decoder" target="_blank">Decoder</a> and <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html#latent vector" target="_blank">Latent vector</a> vector. Please click on the respective link if you want to know about these terms.<br/>
+In Autoencoder part we have <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html#encoder" target="_blank">Encoder</a>, <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html#Decoder" target="_blank">Decoder</a> and <a href="https://shiva1515.github.io/2019/06/04/All-you-need-to-know-about-Vae-(Part-1).html#latent vector" target="_blank">Latent vector</a>. Please click on the respective link if you want to know about these terms.<br/>
 auto-encoder try to give output as same as the input, but we want to generate a similar input, not same input so what we do is we take a sample from latent vector and put into the decoder to give similar output, but the problem is we don’t know the distribution of latent vector.<br/>
 So we take a random distribution whose distribution we know and try to impose this distribution into latent distribution and remember to impose this distribution into the latent distribution we use JSD divergence because we see JSD is better than KL-divergence.<br/>
 
@@ -59,7 +60,7 @@ You can see in above image that x is our real distribution and $q(z\|x)$ is our 
 
 **Theory of AAE**<br/>
 
-To make adversarial autoencoder, we first make train our autoencoder to make the same images. Why this we do earlier you will understand later, after the autoencoder part  trained now we trained our generator part now what we do is first we take sample from our dataset we pass it through encoder now we take sample and give it to the discriminator and make them labels as 0.and we took sample from real data p(z) and pass it to the discriminator and make them labels as1.<br/>
+To make adversarial autoencoder, we first train our autoencoder to make the same images. Why we do this earlier you will understand later, after the autoencoder part  trained now we trained our generator part now what we do is first we take sample from our dataset we pass it through encoder now we take sample and give it to the discriminator and make them labels as 0.and we took sample from real data p(z) and pass it to the discriminator and make them labels as1.<br/>
 
 Remember one thing here discriminator act as classifier it only classifies the data which is coming from the dataset and real distribution, and the discriminator work is to differentiate this. And we trained the discriminator until the discriminator not able to differentiate between the real dataset and fake and when this happens we understand that now our $q(z)$ is somewhat similar to the $p(z)$ and now we take a sample and pass through the decoder to make similar input.<br/>
 
@@ -82,15 +83,16 @@ Here encoder plays two crucial roles
 
 Let's see the code of AAE in pytorch.in this code, we see text generation by using SMILES(molecular generation)
 
-I used pycharm; I suggest you use google collab for this code and please reduce the size of the data as real data needs a huge computation.
+I used pycharm; I suggest you to use google collab for this code and please reduce the size of the data as real data needs a huge computation.
 
 **Import dataset and data-preprocessing:**<br/>
-We use the same <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Import_dataset" target="_blank">dataset</a> as we use in VAE to see the <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Build vocabulary" target="_blank">vocabulary</a><br/>
-The data preprocessing part is same in VAE and AAE. and i explain about data preprocessing also.
+We use the same <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Import_dataset" target="_blank">dataset</a> as we use in VAE and also same <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#Build vocabulary" target="_blank">vocabulary</a><br/>
+The data preprocessing part is same in VAE and AAE. and in the previous link I explain about data preprocessing also.
 
 **Model:**<br/>
 In the model section, we make 3 class that I already told you encoder, decoder and discriminator.
 We feed our vocabulary first to encoder this encoder tries to encode the input data and make a small vector which representation our whole input data now the decoder takes input from this small dimension latent vector and convert back into our original data.
+here we use RNN with Adversarial Autoencoder as for similar text generation
 
 ```python
 import torch
@@ -359,8 +361,12 @@ def sample(model,n_batch, max_len=100):
         samples = ['' for _ in range(n_batch)]
     return samples
 ```
-I hope you like it.If you have any doubts Let us know in the comments.<br/>
-What kinds of content would you like to see more on this blog?<br/>
+
+
+this code is hard to understand but once you understand you will definitely get the whole concept easily<br/>
+I hope you like it.If you have any doubts and what kinds of content would you like to see more on this blog? Let us know in the comments.<br/>
+till then keep learning :)
+
 **Refrences**<br/>
 <a href="https://www.youtube.com/channel/UCP9YJJ24w6g38VMVMm6Thtg" target="_blank">alhad kumar</a> video explanation and git hub code <a href="https://github.com/molecularsets/moses/tree/master/moses/aae" target="_blank">moses</a><br/>
 
