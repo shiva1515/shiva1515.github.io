@@ -7,7 +7,7 @@ mathjax: True
 
 In my previous two blogs, you see how vae helps to create <a href="https://shiva1515.github.io/2019/06/05/All-you-need-to-know-about-Vae-(Part-2).html#SMILES" target="_blank">SMILES</a>(text generation) of a similar kind.<br/>
 
-before coming into the Adversarial Autoencoder lets see why some drawbacks of Variational autoencoder(VAE)
+before coming into the Adversarial Autoencoder lets see some drawbacks of Variational autoencoder(VAE)
 
 there are many models which work similarly to the VAE.they also helps us to understand the similar input generation. But what's the difference between VAE and others it they both work on the same things.
 Why we use other models instead of VAE for similar input generation.<br/>
