@@ -364,7 +364,8 @@ def sample(model,n_batch, max_len=100):
 
 
 this code is hard to understand but once you understand you will definitely get the whole concept easily<br/>
-I hope you like it.If you have any doubts and what kinds of content would you like to see more on this blog? Let us know in the comments.<br/>
+I hope you like it.<br/>
+If you have any doubts and what kinds of content would you like to see more on this blog? Let us know in the comments.<br/>
 till then keep learning :)
 
 **Refrences**<br/>
