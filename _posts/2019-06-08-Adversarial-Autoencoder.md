@@ -122,58 +122,8 @@ class encoder(nn.Module):
         state = self.relu(x)
         return state
 
-class decoder(nn.Module):
-    def __init__(self, vocab, emb_dim, latent_dim, hidden_dim):
-        super(decoder, self).__init__()
-        self.latent_dim = latent_dim
-        self.hidden_dim = hidden_dim
-        self.emb_dim = emb_dim
-        self.vocab = vocab
-
-        self.latent = nn.Linear(latent_dim, hidden_dim)
-        self.embeddings_layer = nn.Embedding(len(vocab), emb_dim, padding_idx=c2i['<pad>'])
-        self.rnn = nn.LSTM(emb_dim, hidden_dim, batch_first=True)
-        self.fc = nn.Linear(hidden_dim, len(vocab))
-
-    def forward(self, x, lengths, state, is_latent_state=False):
-        if is_latent_state:
-            c0 = self.latent(state)
-            c0 = c0.unsqueeze(0)
-            h0 = torch.zeros_like(c0)
-            state = (h0, c0)
-        x = self.embeddings_layer(x)
-        x = pack_padded_sequence(x, lengths, batch_first=True)
-        x, state = self.rnn(x, state)
-        x, lengths = pad_packed_sequence(x, batch_first=True)
-        x = self.fc(x)
-        return x, lengths, state
-
-
-class Discriminator(nn.Module):
-    def __init__(self, latent_dim, disc_input, disc_output):
-        super(Discriminator, self).__init__()
-        self.latent_dim = latent_dim
-        self.disc_input = disc_input
-        self.disc_output = disc_output
-
-        self.lin1 = nn.Linear(latent_dim, disc_input)
-        self.lin2 = nn.Linear(disc_input, disc_output)
-        self.lin3 = nn.Linear(disc_output, 1)
-        self.sig = nn.Sigmoid()
-
-    def forward(self, x):
-        x = self.lin1(x)
-        x = self.lin2(x)
-        x = self.lin3(x)
-        x = self.sig(x)
-        return x
-        
-class AAE(nn.Module):
-    def __init__(self):
-        super(AAE,self).__init__()
-        self.encoder = encoder(vocab,emb_dim,hidden_dim,latent_dim)
-        self.decoder = decoder(vocab,emb_dim,latent_dim,hidden_dim)
-        self.discriminator = Discriminator(latent_dim,disc_input,disc_output)
+......
+to see full code please visit the above given link
         
 ```
 **Training:**<br/>
@@ -208,63 +158,8 @@ def pretrain(model, train_loader):
                 loss.backward()
                 optimizer.step()
 
-
-def train(model, train_loader):
-    criterion = {"enc": nn.CrossEntropyLoss(), "gen": lambda t: -torch.mean(F.logsigmoid(t)),"disc": nn.BCEWithLogitsLoss()}
-
-    optimizers = {'auto': torch.optim.Adam(list(model.encoder.parameters()) + list(model.decoder.parameters()), lr=0.001),
-        'gen': torch.optim.Adam(model.encoder.parameters(), lr=0.001),
-        'disc': torch.optim.Adam(model.discriminator.parameters(), lr=0.001)}
-
-    model.zero_grad()
-    for epoch in range(10):
-        if optimizers is None:
-            model.train()
-        else:
-            model.eval()
-
-        for i, (encoder_inputs, decoder_inputs, decoder_targets) in enumerate(train_loader):
-            encoder_inputs = (data.to(device) for data in encoder_inputs)
-            decoder_inputs = (data.to(device) for data in decoder_inputs)
-            decoder_targets = (data.to(device) for data in decoder_targets)
-
-            latent_code = model.encoder(*encoder_inputs)
-            decoder_output, decoder_output_lengths, states = model.decoder(*decoder_inputs, latent_code,
-                                                                           is_latent_state=True)
-            discriminator_output = model.discriminator(latent_code)
-
-            decoder_outputs = torch.cat([t[:l] for t, l in zip(decoder_output, decoder_output_lengths)], dim=0)
-            decoder_targets = torch.cat([t[:l] for t, l in zip(*decoder_targets)], dim=0)
-
-            autoencoder_loss = criterion["enc"](decoder_outputs, decoder_targets)
-            generation_loss = criterion["gen"](discriminator_output)
-
-            if i % 2 == 0:
-                discriminator_input = torch.randn(batch_size, latent_dim)
-                discriminator_output = model.discriminator(discriminator_input)
-                discriminator_targets = torch.ones(batch_size, 1)
-            else:
-                discriminator_targets = torch.zeros(batch_size, 1)
-            discriminator_loss = criterion["disc"](discriminator_output, discriminator_targets)
-
-            if optimizers is not None:
-                optimizers["auto"].zero_grad()
-                autoencoder_loss.backward(retain_graph=True)
-                optimizers["auto"].step()
-
-                optimizers["gen"].zero_grad()
-                autoencoder_loss.backward(retain_graph=True)
-                optimizers["gen"].step()
-
-                optimizers["disc"].zero_grad()
-                autoencoder_loss.backward(retain_graph=True)
-                optimizers["disc"].step()
-
-def fit(model,train_data):
-    train_loader = get_dataloader(model, train_data, collate_fn=None, shuffle=True)
-    pretrain(model,train_loader)
-    train(model,train_loader)
-
+..
+to see full code visit click on above link
 
 ```
 **Sampling:**<br/>
